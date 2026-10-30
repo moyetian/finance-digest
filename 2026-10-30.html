@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0a0a0a">
+<title>每日金融日报 · 2026-10-30（周五） · 每日金融日报</title>
+<style>
+:root{
+  --bg:#fafafa; --card:#ffffff; --ink:#18181b; --ink2:#52525b; --muted:#a1a1aa;
+  --line:#e4e4e7; --soft:#f4f4f5; --accent:#2563eb;
+  --nav-bg:rgba(250,250,250,.86);
+  --shadow:0 1px 2px rgba(24,24,27,.05);
+  --shadow-lg:0 18px 44px -18px rgba(24,24,27,.22);
+  --pill-fg:#ffffff; --pill-bg:#18181b;
+  --streak-fg:#b45309; --streak-bg:#fef3c7;
+  --yolk:#FFC400;
+  --hero-bg:#0a0a0a; --hero-ink:#fafafa; --hero-muted:#8e8e96; --hero-line:#232329;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#09090b; --card:#121215; --ink:#f4f4f5; --ink2:#c9c9cf; --muted:#71717a;
+    --line:#26262b; --soft:#1b1b1f; --accent:#5b9dff;
+    --nav-bg:rgba(9,9,11,.84);
+    --shadow:0 1px 2px rgba(0,0,0,.5);
+    --shadow-lg:0 20px 48px -16px rgba(0,0,0,.7);
+    --pill-fg:#18181b; --pill-bg:#f4f4f5;
+    --streak-fg:#fbbf24; --streak-bg:rgba(251,191,36,.12);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB",
+  "Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.75;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:color-mix(in srgb,var(--yolk) 30%,transparent)}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+  background:linear-gradient(90deg,var(--yolk),#ffdf5e)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+/* ============ 暗黑刊头 ============ */
+.hero{background:var(--hero-bg);color:var(--hero-ink);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(640px 320px at 50% -8%, rgba(255,196,0,.13), transparent 70%),
+    radial-gradient(900px 500px at 85% 110%, rgba(255,196,0,.05), transparent 60%)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,196,0,.5),transparent)}
+.hero-inner{max-width:768px;margin:0 auto;padding:70px 20px 60px;text-align:center;
+  position:relative}
+.hero .kicker{display:flex;align-items:center;justify-content:center;gap:12px;
+  flex-wrap:wrap;font-size:11px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--hero-muted);font-weight:600}
+.hero .kicker .issue{color:var(--yolk);letter-spacing:.1em}
+.hero .streak{display:inline-flex;align-items:center;gap:5px;letter-spacing:.02em;
+  text-transform:none;font-size:12.5px;font-weight:700;
+  color:var(--yolk);background:rgba(255,196,0,.1);
+  border:1px solid rgba(255,196,0,.28);
+  border-radius:999px;padding:4px 13px}
+.hero h1{font-size:clamp(46px,10vw,76px);font-weight:800;letter-spacing:-.02em;
+  margin:22px 0 12px;line-height:1.2}
+.hero h1 .hl{color:var(--yolk)}
+.hero .dateline{color:var(--hero-muted);font-size:14.5px;max-width:560px;
+  margin:0 auto}
+.hero .dateline b{color:var(--hero-ink);font-weight:700}
+.hero .stats{display:flex;justify-content:center;gap:12px;margin:32px 0 4px;
+  flex-wrap:wrap}
+.hero .stat{min-width:108px;background:rgba(255,255,255,.035);
+  border:1px solid var(--hero-line);border-radius:14px;padding:13px 20px;
+  transition:border-color .25s,background .25s}
+.hero .stat:hover{border-color:rgba(255,196,0,.45);background:rgba(255,196,0,.05)}
+.hero .stat b{display:block;font-size:26px;font-weight:800;letter-spacing:-.01em;
+  font-variant-numeric:tabular-nums;line-height:1.3;color:#fff}
+.hero .stat b .y{color:var(--yolk)}
+.hero .stat span{font-size:12px;color:var(--hero-muted)}
+.hero-inner>*{animation:fadeDown .65s cubic-bezier(.2,.7,.3,1) both}
+.hero-inner>*:nth-child(2){animation-delay:.07s}
+.hero-inner>*:nth-child(3){animation-delay:.14s}
+.hero-inner>*:nth-child(4){animation-delay:.21s}
+.hero-inner>*:nth-child(5){animation-delay:.28s}
+@keyframes fadeDown{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+/* ============ 吸顶导航（浅色） ============ */
+.nav{position:sticky;top:0;z-index:50;background:var(--nav-bg);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line)}
+.nav-inner{max-width:768px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;
+  padding:12px 20px;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav a{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;
+  font-size:13px;font-weight:600;color:var(--ink2);text-decoration:none;
+  padding:7px 15px;border-radius:999px;background:var(--soft);
+  transition:background .2s,color .2s;white-space:nowrap}
+.nav a:hover{color:var(--ink)}
+.nav a.active{background:var(--pill-bg);color:var(--pill-fg)}
+.nav a .dot{width:7px;height:7px;border-radius:50%;background:var(--sc,#999)}
+.wrap{max-width:768px;margin:0 auto;padding:8px 20px 90px}
+/* ============ 章节 ============ */
+.sec{margin:46px 0 8px}
+.sec-head{display:flex;align-items:flex-end;gap:14px;margin-bottom:8px}
+.sec-head .num{font-size:46px;font-weight:800;line-height:1;color:var(--line);
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em;user-select:none}
+.sec-head h2{font-size:21px;font-weight:750;letter-spacing:-.01em;line-height:1.4}
+.sec-head .tt .desc{display:block;font-size:12px;color:var(--muted);font-weight:400;
+  margin-top:3px;letter-spacing:.02em}
+/* ---- 卡片层次：编号 / 头条 / 洞察行 ---- */
+.card{position:relative}
+.card-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.card-top .idx{font-size:11.5px;font-weight:700;color:var(--muted);
+  font-variant-numeric:tabular-nums;letter-spacing:.1em}
+.lead-k{font-size:10.5px;font-weight:800;letter-spacing:.16em;color:var(--sc)}
+.lead-k::before{content:"";display:inline-block;width:16px;height:2px;
+  background:var(--sc);border-radius:2px;margin-right:7px;vertical-align:3px}
+.card.lead{border-color:color-mix(in srgb,var(--sc) 38%,var(--line))}
+.card.lead::before{content:"";position:absolute;top:-1px;left:20px;width:76px;
+  height:3px;border-radius:3px;background:linear-gradient(90deg,var(--sc),transparent)}
+.card.lead h3{font-size:17.5px}
+.why{margin-top:11px;font-size:13.5px;color:var(--ink2);line-height:1.7;
+  background:color-mix(in srgb,var(--sc) 6%,transparent);
+  border-radius:10px;padding:10px 14px}
+.why-k{display:inline-block;font-size:11px;font-weight:800;color:var(--sc);
+  letter-spacing:.08em;border:1px solid color-mix(in srgb,var(--sc) 45%,transparent);
+  border-radius:6px;padding:1px 9px;margin-right:9px;vertical-align:1px;
+  background:color-mix(in srgb,var(--sc) 8%,transparent)}
+.sec-head .rule{flex:1;height:1px;background:var(--line);margin-bottom:13px}
+.sec-head .cnt{font-size:12px;color:var(--muted);margin-bottom:11px;
+  white-space:nowrap;font-variant-numeric:tabular-nums}
+/* ============ 卡片（隐形动效） ============ */
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:20px 22px;margin:14px 0;box-shadow:var(--shadow);
+  transition:opacity .45s ease,transform .45s ease,box-shadow .2s ease,
+    border-color .2s ease}
+.js .card{opacity:0;transform:translateY(12px)}
+.js .card.show{opacity:1;transform:none}
+.card:hover{box-shadow:var(--shadow-lg);border-color:color-mix(in srgb,var(--sc,#999) 45%,var(--line))}
+.card h3{font-size:16px;font-weight:700;margin-bottom:8px;line-height:1.65}
+.card h3 .tag{display:inline-block;font-size:11.5px;font-weight:600;
+  color:var(--sc);background:color-mix(in srgb,var(--sc) 10%,transparent);
+  border-radius:6px;padding:2px 9px;margin-left:9px;vertical-align:2px;white-space:nowrap}
+.card p{font-size:14.5px;color:var(--ink2);margin:7px 0}
+.card p a{color:var(--accent);text-decoration:none;border-bottom:1px solid
+  color-mix(in srgb,var(--accent) 35%,transparent)}
+.card p a:hover{border-bottom-color:var(--accent)}
+.card p.note{font-size:13.5px;background:color-mix(in srgb,var(--sc) 7%,transparent);
+  border-left:3px solid var(--sc);padding:10px 14px;border-radius:0 10px 10px 0}
+.src{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+.src a{font-size:12.5px;font-weight:600;color:var(--ink2);text-decoration:none;
+  border:1px solid var(--line);padding:4px 13px;border-radius:999px;
+  background:var(--card);transition:all .18s}
+.src a:hover{color:#fff;background:var(--accent);border-color:var(--accent)}
+.stars{font-size:12px;font-weight:700;color:var(--streak-fg);background:var(--streak-bg);
+  border-radius:999px;padding:3px 11px;white-space:nowrap}
+.empty{color:var(--muted);font-size:14px;padding:14px 4px}
+footer{margin-top:70px;border-top:1px solid var(--line);padding-top:26px;
+  text-align:center;color:var(--muted);font-size:12.5px}
+footer .arch{display:inline-block;margin-top:14px;padding:9px 24px;
+  border:1px solid var(--line);border-radius:999px;color:var(--ink2);
+  text-decoration:none;font-size:13px;font-weight:600;background:var(--card);
+  transition:all .2s}
+footer .arch:hover{border-color:var(--accent);color:var(--accent)}
+.top{position:fixed;right:18px;bottom:22px;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line);cursor:pointer;background:var(--pill-bg);
+  color:var(--pill-fg);font-size:17px;box-shadow:var(--shadow-lg);
+  opacity:0;pointer-events:none;transition:opacity .25s}
+.top.show{opacity:1;pointer-events:auto}
+@media(max-width:640px){.card{padding:17px 18px}.hero-inner{padding:54px 20px 46px}
+  .sec-head .num{font-size:38px}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .card{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker"><span>Finance Daily</span>
+      <span class="issue mono">Issue #016</span>
+      <span class="streak">🔥 连续更新 16 天</span></div>
+    <h1>每日<span class="hl">金融</span>日报</h1>
+    <div class="dateline"><b>2026 年 10 月 30 日 · 星期五</b> · 数据口径：本期收盘数字为最近一个已收盘交易日 10-29（周四），美股为美东时间 10-29 收盘、A股/港股为北京时间 10-29 收盘。所有数字注明对应日期，经公开财经信源核实；未能核实到的数字如实注明、不充数。</div>
+    <div class="stats">
+      <div class="stat"><b><span class="y">7</span></b><span>收录条目</span></div>
+      <div class="stat"><b>6</b><span>内容板块</span></div>
+      <div class="stat"><b>2′</b><span>预计阅读</span></div>
+    </div>
+  </div>
+</header>
+<nav class="nav"><div class="nav-inner"><a href="#metals" style="--sc:#d97706"><span class="dot"></span>贵金属</a><a href="#us" style="--sc:#2563eb"><span class="dot"></span>美股</a><a href="#cn" style="--sc:#e11d48"><span class="dot"></span>A股港股</a><a href="#bonds" style="--sc:#059669"><span class="dot"></span>债汇</a><a href="#macro" style="--sc:#7c3aed"><span class="dot"></span>宏观数据</a><a href="#news" style="--sc:#0284c7"><span class="dot"></span>财经要闻</a></div></nav>
+<main class="wrap"><section class="sec" id="metals" style="--sc:#d97706"><div class="sec-head"><span class="num">01</span><div class="tt"><h2>贵金属与大宗</h2><span class="desc">黄金 · 白银 · 原油</span></div><span class="rule"></span><span class="cnt">1 条</span></div><article class="card lead">
+<div class="card-top"><span class="idx">01</span><span class="lead-k">头条</span></div>
+<h3>现货黄金</h3>
+<p>4,020.57 美元/盎司（-1.15%，美东 17:00 收盘口径，OANDA 数据经 Ausecure 整理；盘中最低 4,005.37 美元，逼近 4,000 美元关口）；<b>COMEX 期金</b>：12 月合约盘中约 4,047.10 美元/盎司（-0.1%，Kitco 11:21 GMT 口径，非结算价）</p>
+<p>▪ <b>现货白银</b>：52.15 美元/盎司（-3.37%，白银期货收于 2026 年内最低；金银比收于 77.1）</p>
+<p>▪ <b>WTI（12月合约）</b>：约 102.00 美元/桶（约 -0.8%，EL7 结算口径）；<b>布伦特（12月合约）</b>：110.21 美元/桶（约 -4.4%，EL7 结算口径；1 月合约口径为 111.45 美元，合约月份不同、数值不可直接对比）</p>
+<p>▪ 背景：美国副总统万斯致函伊朗方面谋求重启谈判的消息对冲了中东供应担忧，油价回吐前一日涨幅；伊朗革命卫队称三艘油轮在霍尔木兹海峡以南触雷起火，英国海事机构亦报告一艘船只在阿曼哈萨卜以北起火，但未证实海峡封锁或持续断供</p>
+</article></section><section class="sec" id="us" style="--sc:#2563eb"><div class="sec-head"><span class="num">02</span><div class="tt"><h2>美股</h2><span class="desc">三大指数 · 美债收益率 · 科技巨头</span></div><span class="rule"></span><span class="cnt">1 条</span></div><article class="card lead">
+<div class="card-top"><span class="idx">01</span><span class="lead-k">头条</span></div>
+<h3>道指</h3>
+<p>52,342.56（-0.25%）；<b>标普500</b>：7,720.39（-0.30%）；<b>纳指</b>：26,184.72（-1.38%）；罗素 2000 逆势涨 1.01% 至 2,859.22，11 个标普板块中有 9 个上涨</p>
+<p>▪ <b>10年期美债收益率</b>：约 4.98%（约 -7bp；2 年期约 4.60%–4.61%，30 年期约 5.30%–5.32%，不同信源尾盘口径略有差异）</p>
+<p>▪ 显著异动：<b>Alphabet -12.64%</b>（三季度资本开支 513.6 亿美元、自由现金流转负约 90.7 亿美元，创上市以来最差单日表现之一），拖累通信服务板块 -1.87%、科技板块 -1.18%；<b>ServiceNow -26.96%、Marvell -13.24%、卡特彼勒 -9.27%</b>（四季度销售指引仅“温和”增长）；另一端<b>礼来 +6.57%</b>（上调全年收入指引）、默克 +3.84%、Chipotle +近 9%</p>
+<p>▪ <b>FedWatch（市场预期，非官方口径，不构成 W4/W5）</b>：数据公布后 12 月加息概率回落至约 74%–83%（不同时点口径），低于议息当日的约 85%</p>
+</article></section><section class="sec" id="cn" style="--sc:#e11d48"><div class="sec-head"><span class="num">03</span><div class="tt"><h2>A股与港股</h2><span class="desc">主要指数 · 成交额 · 板块异动</span></div><span class="rule"></span><span class="cnt">1 条</span></div><article class="card lead">
+<div class="card-top"><span class="idx">01</span><span class="lead-k">头条</span></div>
+<h3>上证</h3>
+<p>3,651.43（-0.82%）；<b>深成指</b>：11,138.20（-2.92%）；<b>创业板指</b>：2,517.59（-4.45%）；科创 50 跌 4.27% 至 1,228.09，北证 50 跌 3.88%</p>
+<p>▪ 沪深两市成交额约 1.56 万亿元（15,565.24 亿元），较上一交易日缩量约 720 亿元；全市场约 789 只个股上涨、约 4,795 只下跌，39 只涨停、41 只跌停</p>
+<p>▪ 领涨领跌：航天装备（+6.84%）、煤炭、银行（申万银行 +1.97%，四大行总市值首破 10 万亿元）逆势走强；通信（-7.56%）、电子（-5.47%）、半导体、CPO、消费电子领跌</p>
+<p>▪ <b>恒指</b>：22,958.65（-0.59%，失守 23,000 点）；<b>恒生科技</b>：3,744.14（-2.84%，再创年内新低）；国企指数 7,755.66（-0.46%）；港股主板成交约 1,894.53 亿港元，南向资金净卖出超 33 亿港元；光通信、PCB 领跌（中际旭创 -10%、广合科技 -近 13%），科网股普跌（阿里 -2.83%、腾讯 -2.58%），小米逆势 +0.23%</p>
+</article></section><section class="sec" id="bonds" style="--sc:#059669"><div class="sec-head"><span class="num">04</span><div class="tt"><h2>债券与汇率</h2><span class="desc">国债收益率 · 美元指数 · 人民币</span></div><span class="rule"></span><span class="cnt">1 条</span></div><article class="card lead">
+<div class="card-top"><span class="idx">01</span><span class="lead-k">头条</span></div>
+<h3>中债10年期</h3>
+<p>10 月 29 日约 1.62%（路透银行间综述口径：10 年期国债活跃券 260016 较上日尾盘上行 0.5bp；30 年期国债活跃券 2600004 报 2.058%、上行 1.2bp；中信证券固定收益部《市场回顾 | 债市复盘20261029》本期尚未检索到，暂不标注该口径的精确 bp 变动）</p>
+<p>▪ <b>美元指数</b>：约 101.90–101.93（约 -0.22% 至 -0.25%，不同信源尾盘口径略有差异）</p>
+<p>▪ <b>美元/人民币</b>：中间价 <b>6.7147</b>（10 月 29 日，较上一交易日 6.7165 上调 18 个基点，创 2023 年 2 月 2 日以来新高）；10 月 29 日在岸 16:30 官方收盘价 <b>6.6621，较上一交易日上涨 48 个基点</b>（每经 AI 快讯口径）；离岸人民币盘中升破 6.66，最高至 6.6583 附近，创 2022 年 6 月以来新高</p>
+</article></section><section class="sec" id="macro" style="--sc:#7c3aed"><div class="sec-head"><span class="num">05</span><div class="tt"><h2>宏观数据与政策</h2><span class="desc">数据实际 vs 预期 · 发布日历</span></div><span class="rule"></span><span class="cnt">1 条</span></div><article class="card lead">
+<div class="card-top"><span class="idx">01</span><span class="lead-k">头条</span></div>
+<h3>昨日（10-29）已发布</h3>
+<p>美国三季度实际 GDP 年化季率初值 <b>3.4%</b>（预期 3.2%、前值 2.2%，一年来最快）；9 月 PCE 物价指数月增 0.5%、年增 <b>3.6%</b>（符合预期，前值 3.4%），核心 PCE 月增 0.3%、年增 <b>3.1%</b>（符合预期，前值 3.0%）；至 10 月 24 日当周初请失业金人数 <b>19.4 万</b>（预期 19.8 万）；9 月个人收入月增 0.2%（预期 0.3%）、支出月增 0.5%，实际支出持平，储蓄率降至 3.8%；欧洲央行维持三大利率不变，存款机制利率 <b>2.50%</b>（管委会曾讨论是否加息、最终一致决定按兵不动），并称 12 月新预测将验证加息理由是否成立；拉加德宣布将于 <b>2027 年 2 月 7 日</b>提前卸任欧洲央行行长</p>
+<p>▪ <b>今日（10月30日周五，北京时间）</b>：07:30 日本 9 月失业率；11:00 左右日本央行利率决议及经济与物价展望报告（市场普遍预期维持 1.25% 不变）；18:00 欧元区三季度 GDP 初值、9 月失业率；20:30 美国三季度就业成本指数；21:00 德国 10 月 CPI；美股盘前/盘后关注亚马逊、英特尔财报的市场消化（详见要闻第 3 条）</p>
+<p>▪ <b>本周后续</b>：11 月 1 日 OPEC+ 会议评估市场状况；11 月 3 日美国中期选举</p>
+</article></section><section class="sec" id="news" style="--sc:#0284c7"><div class="sec-head"><span class="num">06</span><div class="tt"><h2>财经要闻</h2><span class="desc">财报 · 并购 · 监管政策</span></div><span class="rule"></span><span class="cnt">2 条</span></div><div class="card"><p>1. <b>Alphabet 暴跌 12.64% 拖累纳指跌 1.38%，AI 支出可持续性再受质疑</b>：Alphabet 三季度营收 1,275.8 亿美元（+25%，略低于预期）、谷歌云收入 +103%，但单季资本开支 513.6 亿美元、自由现金流转负约 90.7 亿美元且为连续第二个季度为负，管理层称 2027 年资本开支还将显著增长；ServiceNow、Marvell、存储股同步大跌，但罗素 2000 与医疗板块逆势走强，显示抛售集中于 AI 支出链而非全市场。 <a href="https://marketbriefer.com/the-global-close-october-29-2026-alphabet-plunges-the-market-rotates/" target="_blank" rel="noopener">Market Briefer</a> / <a href="https://www.investopedia.com/stock-market-today-dow-jones-s-and-p-500-10292026-12200056" target="_blank" rel="noopener">Investopedia</a> 2. <b>美国 GDP 超预期、通胀仍高于目标，欧洲央行按兵不动、拉加德提前卸任</b>：三季度 GDP 年化 3.4% 创一年最快，9 月 PCE 年增 3.6%、核心 3.1% 均符合预期但仍远高于美联储 2% 目标；欧洲央行维持存款利率 2.50% 不变，拉加德将于 2027 年 2 月 7 日提前约九个月卸任。 <a href="https://www.forexfactory.com/news/1433915-us-gdp-advance-estimate-3rd-quarter-2026/amp" target="_blank" rel="noopener">CNBC 经 Forex Factory 转引</a> / <a href="https://news.marketflux.io/news/us-gdp-surges-3-4-in-q3-as-pce-inflation-accelerates-and-labor-market-8807852b7a368aadeb50dc291050e458.html" target="_blank" rel="noopener">Market Flux</a> 3. <b>亚马逊、英特尔盘后双双下跌</b>：亚马逊三季度净销售额 2,019 亿美元（+12%）、AWS 增长 39% 至 460 亿美元（近五年最快），但过去 12 个月自由现金流为负 424 亿美元、全年约 2,200 亿美元支出计划不变，盘后跌超 6%；英特尔四季度营收指引 150–160 亿美元不及预期，盘后跌约 16%–17.6%。 <a href="https://smartinvestingandtrading.com/daily-tips/amazon-earnings-intel-evening-wrap/" target="_blank" rel="noopener">Smart Investing and Trading</a> / <a href="https://www.ausecure.com/gold-market-close-oct-29-2026/" target="_blank" rel="noopener">Ausecure</a> 4. <b>市场轮动：DoorDash 宣布 170 亿美元收购 Instacart，医疗股领涨</b>：DoorDash 以现金加股票 170 亿美元收购配送对手 Instacart，当日涨 5.6%；礼来上调全年收入指引涨 6.57%、默克涨约 4%，医疗板块 +2.40% 领涨标普 11 大板块。 <a href="https://marketbriefer.com/the-global-close-october-29-2026-alphabet-plunges-the-market-rotates/" target="_blank" rel="noopener">Market Briefer</a> 5. <b>霍尔木兹海峡油轮触雷传闻与美伊谈判希望交织，油价回落</b>：伊朗革命卫队称三艘油轮在霍尔木兹海峡以南触雷起火，英国海事机构报告一艘船只在阿曼哈萨卜以北起火；与此同时万斯致函伊朗方面谋求重启谈判的消息令市场押注局势缓和，布伦特与 WTI 回吐前一日涨幅。 <a href="https://www.ausecure.com/gold-market-close-oct-29-2026/" target="_blank" rel="noopener">Ausecure</a> / <a href="https://wdsm710.com/2026/10/28/us-oil-prices-fall-as-investors-gauge-risks-to-mideast-supply/" target="_blank" rel="noopener">路透经 WDSM 转引</a></p></div><article class="card lead">
+<div class="card-top"><span class="idx">01</span><span class="lead-k">头条</span></div>
+<h3>网页版</h3>
+<p>https://moyetian.github.io/finance-digest/</p>
+</article><article class="card">
+<div class="card-top"><span class="idx">02</span></div>
+<h3>红线声明</h3>
+<p>本日报只给数字和事实，不构成任何投资建议。</p>
+</article></section>
+<footer>由 Muse 每日自动生成 · 只记录数字与事实，不构成任何投资建议<br>
+<a class="arch" href="archive.html">往期日报归档 →</a></footer>
+</main>
+<button class="top" aria-label="回到顶部">↑</button>
+<script>
+document.documentElement.classList.add('js');
+const cards=document.querySelectorAll('.card');
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){
+    const c=e.target;c.classList.add('show');io.unobserve(c);
+    setTimeout(()=>{c.style.transitionDelay='0ms';},500);
+  }
+}),{threshold:.05});
+cards.forEach((c,i)=>{c.style.transitionDelay=Math.min((i%4)*40,120)+'ms';io.observe(c);});
+const bar=document.getElementById('progress'),top=document.querySelector('.top');
+addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const max=h.scrollHeight-h.clientHeight;
+  bar.style.width=(max>0?h.scrollTop/max*100:0)+'%';
+  top.classList.toggle('show',h.scrollTop>600);
+},{passive:true});
+top.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+const secs=[...document.querySelectorAll('.sec')];
+const links=[...document.querySelectorAll('.nav a')];
+const so=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.hash==='#'+e.target.id));}
+}),{rootMargin:'-38% 0px -55% 0px'});
+secs.forEach(s=>so.observe(s));
+</script>
+</body>
+</html>
